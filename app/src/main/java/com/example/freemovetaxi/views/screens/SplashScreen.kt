@@ -18,7 +18,8 @@ import kotlinx.coroutines.delay
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.res.painterResource
-
+import com.example.freemovetaxi.views.theme.TaxiBackground
+import androidx.compose.foundation.background
 import com.example.freemovetaxi.R
 @Composable
 fun SplashScreen(
@@ -40,7 +41,10 @@ fun SplashScreen(
     }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(TaxiBackground),
+
         contentAlignment = Alignment.Center
     ) {
 

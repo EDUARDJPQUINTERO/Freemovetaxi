@@ -13,7 +13,12 @@ import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.freemovetaxi.viewmodels.ChatViewModel
 import com.example.freemovetaxi.views.components.TaxiButton
+import androidx.compose.foundation.background
 
+import com.example.freemovetaxi.views.theme.TaxiBackground
+import androidx.compose.material3.CardDefaults
+
+import com.example.freemovetaxi.views.theme.TaxiYellow
 @Composable
 fun ChatScreen(
     navController: NavController
@@ -24,6 +29,7 @@ fun ChatScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(TaxiBackground)
             .padding(16.dp)
     ) {
 
@@ -37,7 +43,11 @@ fun ChatScreen(
         )
 
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
+            colors = CardDefaults.cardColors(
+                containerColor = TaxiYellow
+            )
         ) {
 
             Column(
@@ -61,7 +71,11 @@ fun ChatScreen(
         )
 
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
+            colors = CardDefaults.cardColors(
+                containerColor = TaxiYellow
+            )
         ) {
 
             Column(

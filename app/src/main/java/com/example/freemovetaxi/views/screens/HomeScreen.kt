@@ -3,13 +3,17 @@ package com.example.freemovetaxi.views.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 
+import androidx.compose.material3.Text
+
 import androidx.compose.runtime.Composable
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
 import androidx.compose.ui.res.painterResource
 
 import androidx.lifecycle.viewmodel.compose.viewModel
+
 import androidx.navigation.NavController
 
 import com.example.freemovetaxi.R
@@ -20,6 +24,8 @@ import com.example.freemovetaxi.views.components.DriverCard
 import com.example.freemovetaxi.views.components.FakeMapCard
 import com.example.freemovetaxi.views.components.InfoCard
 import com.example.freemovetaxi.views.components.TaxiButton
+
+import com.example.freemovetaxi.views.theme.TaxiBlack
 
 @Composable
 fun HomeScreen(
@@ -48,6 +54,11 @@ fun HomeScreen(
             )
 
         }
+
+        Text(
+            text = "Tu movilidad segura",
+            color = TaxiBlack
+        )
 
         Spacer(
             modifier = Modifier.height(12.dp)

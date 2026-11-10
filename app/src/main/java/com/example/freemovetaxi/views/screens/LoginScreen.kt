@@ -1,71 +1,84 @@
 package com.example.freemovetaxi.views.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 
 import androidx.compose.runtime.*
 
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
-import com.example.freemovetaxi.navigation.Routes
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.freemovetaxi.viewmodels.LoginViewModel
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.width
-import androidx.compose.ui.res.painterResource
-
 import com.example.freemovetaxi.R
+import com.example.freemovetaxi.navigation.Routes
+import com.example.freemovetaxi.viewmodels.LoginViewModel
+
+import com.example.freemovetaxi.views.components.TaxiButton
+
+import com.example.freemovetaxi.views.theme.TaxiBackground
+import com.example.freemovetaxi.views.theme.TaxiBlack
+import com.example.freemovetaxi.views.theme.TaxiYellow
+
 @Composable
 fun LoginScreen(
     navController: NavController
 ) {
-    val loginViewModel: LoginViewModel = viewModel()
-    val email = loginViewModel.email
 
-    val password = loginViewModel.password
+    val loginViewModel: LoginViewModel = viewModel()
+
     var isDriver by remember {
         mutableStateOf(false)
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(TaxiBackground)
             .padding(24.dp),
 
         verticalArrangement = Arrangement.Center
     ) {
+
         Image(
             painter = painterResource(
                 id = R.drawable.freemove_logo
             ),
-            contentDescription = "Logo FreeMove Taxi"
+            contentDescription = "FreeMove Taxi Logo",
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(
             modifier = Modifier.height(16.dp)
         )
+
         Text(
-            text = "Iniciar sesión"
+            text = "Bienvenido a FreeMove Taxi",
+            color = TaxiBlack
         )
 
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(20.dp)
         )
-        Row {
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
 
             Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = TaxiYellow,
+                    contentColor = TaxiBlack
+                ),
                 onClick = {
                     isDriver = false
                 }
@@ -74,10 +87,14 @@ fun LoginScreen(
             }
 
             Spacer(
-                modifier = Modifier.width(10.dp)
+                modifier = Modifier.width(12.dp)
             )
 
             Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = TaxiYellow,
+                    contentColor = TaxiBlack
+                ),
                 onClick = {
                     isDriver = true
                 }
@@ -86,14 +103,20 @@ fun LoginScreen(
             }
 
         }
+
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(20.dp)
         )
+
         OutlinedTextField(
-            value = email,
+            modifier = Modifier.fillMaxWidth(),
+
+            value = loginViewModel.email,
+
             onValueChange = {
                 loginViewModel.updateEmail(it)
             },
+
             label = {
                 Text("Correo electrónico")
             }
@@ -104,10 +127,14 @@ fun LoginScreen(
         )
 
         OutlinedTextField(
-            value = password,
+            modifier = Modifier.fillMaxWidth(),
+
+            value = loginViewModel.password,
+
             onValueChange = {
                 loginViewModel.updatePassword(it)
             },
+
             label = {
                 Text("Contraseña")
             }
@@ -117,28 +144,33 @@ fun LoginScreen(
             modifier = Modifier.height(20.dp)
         )
 
-        Button(
-            onClick = {
+        TaxiButton(
+            text = "Ingresar"
+        ) {
 
-                if (loginViewModel.login()) {
+            if (loginViewModel.login()) {
 
-                    navController.navigate(Routes.HOME)
-
-                }
+                navController.navigate(
+                    Routes.HOME
+                )
 
             }
-        ) {
-            Text("Ingresar")
+
         }
 
-        TextButton(
-            onClick = {
-                navController.navigate(Routes.REGISTER)
-            }
+        Spacer(
+            modifier = Modifier.height(10.dp)
+        )
+
+        TaxiButton(
+            text = "Registrarse"
         ) {
-            Text("Registrarse")
+
+            navController.navigate(
+                Routes.REGISTER
+            )
+
         }
 
     }
-
 }

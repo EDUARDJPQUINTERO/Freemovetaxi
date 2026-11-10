@@ -12,6 +12,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.freemovetaxi.viewmodels.ProfileViewModel
+import androidx.compose.foundation.background
+
+import com.example.freemovetaxi.views.theme.TaxiBackground
+import com.example.freemovetaxi.views.theme.TaxiYellow
+import androidx.compose.material3.CardDefaults
 @Composable
 fun ProfileScreen(
     navController: NavController
@@ -20,6 +25,7 @@ fun ProfileScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(TaxiBackground)
             .padding(16.dp)
     ) {
 
@@ -33,7 +39,11 @@ fun ProfileScreen(
         )
 
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
+            colors = CardDefaults.cardColors(
+                containerColor = TaxiYellow
+            )
         ) {
 
             Column(
@@ -81,7 +91,11 @@ fun ProfileScreen(
         )
 
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
+            colors = CardDefaults.cardColors(
+                containerColor = TaxiYellow
+            )
         ) {
 
             Column(
@@ -101,8 +115,12 @@ fun ProfileScreen(
         )
 
         Card(
-            modifier = Modifier.fillMaxWidth()
-        ) {
+            modifier = Modifier.fillMaxWidth(),
+
+            colors = CardDefaults.cardColors(
+                containerColor = TaxiYellow
+            )
+        ){
 
             Column(
                 modifier = Modifier.padding(16.dp)
