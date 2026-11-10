@@ -10,15 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.freemovetaxi.viewmodels.ChatViewModel
+import com.example.freemovetaxi.views.components.TaxiButton
 
 @Composable
 fun ChatScreen(
     navController: NavController
 ) {
+    val chatViewModel: ChatViewModel = viewModel()
 
-    var message by remember {
-        mutableStateOf("")
-    }
 
     Column(
         modifier = Modifier
@@ -85,9 +86,9 @@ fun ChatScreen(
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = message,
+            value = chatViewModel.message,
             onValueChange = {
-                message = it
+                chatViewModel.updateMessage(it)
             },
             label = {
                 Text("Escribe un mensaje")
@@ -98,14 +99,11 @@ fun ChatScreen(
             modifier = Modifier.height(12.dp)
         )
 
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = {
-                message = ""
-            }
+        TaxiButton(
+            text = "Enviar"
         ) {
 
-            Text("Enviar")
+            chatViewModel.sendMessage()
 
         }
 

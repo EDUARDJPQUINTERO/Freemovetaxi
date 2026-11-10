@@ -8,6 +8,10 @@ class ProfileViewModel : ViewModel() {
 
     val rating = 4.9
 
+    val licenseStatus = "Vigente"
+
+    val permissions = "Al día"
+
     val vehicle = "Hyundai Grand i10"
 
     val plate = "ABC-123"

@@ -10,12 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 import androidx.navigation.NavController
-
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.freemovetaxi.viewmodels.ProfileViewModel
 @Composable
 fun ProfileScreen(
     navController: NavController
 ) {
-
+    val profileViewModel: ProfileViewModel = viewModel()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,27 +41,27 @@ fun ProfileScreen(
             ) {
 
                 Text(
-                    text = "Nombre: Carlos Rodríguez"
+                    text = "Nombre: ${profileViewModel.driverName}"
                 )
 
                 Text(
-                    text = "Calificación: 4.9 ★"
+                    text = "Calificación: ${profileViewModel.rating} ★"
                 )
 
                 Text(
-                    text = "Licencia: Vigente"
+                    text = "Licencia: ${profileViewModel.licenseStatus}"
                 )
 
                 Text(
-                    text = "Permisos: Al día"
+                    text = "Permisos: ${profileViewModel.permissions}"
                 )
 
                 Text(
-                    text = "Vehículo: Hyundai Grand i10"
+                    text = "Vehículo: ${profileViewModel.vehicle}"
                 )
 
                 Text(
-                    text = "Placa: ABC-123"
+                    text = "Placa: ${profileViewModel.plate}"
                 )
 
             }

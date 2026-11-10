@@ -22,7 +22,12 @@ import androidx.navigation.NavController
 import com.example.freemovetaxi.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.freemovetaxi.viewmodels.LoginViewModel
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.res.painterResource
 
+import com.example.freemovetaxi.R
 @Composable
 fun LoginScreen(
     navController: NavController
@@ -31,7 +36,9 @@ fun LoginScreen(
     val email = loginViewModel.email
 
     val password = loginViewModel.password
-
+    var isDriver by remember {
+        mutableStateOf(false)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +46,16 @@ fun LoginScreen(
 
         verticalArrangement = Arrangement.Center
     ) {
+        Image(
+            painter = painterResource(
+                id = R.drawable.freemove_logo
+            ),
+            contentDescription = "Logo FreeMove Taxi"
+        )
 
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
         Text(
             text = "Iniciar sesión"
         )
@@ -47,7 +63,32 @@ fun LoginScreen(
         Spacer(
             modifier = Modifier.height(16.dp)
         )
+        Row {
 
+            Button(
+                onClick = {
+                    isDriver = false
+                }
+            ) {
+                Text("Pasajero")
+            }
+
+            Spacer(
+                modifier = Modifier.width(10.dp)
+            )
+
+            Button(
+                onClick = {
+                    isDriver = true
+                }
+            ) {
+                Text("Conductor")
+            }
+
+        }
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
         OutlinedTextField(
             value = email,
             onValueChange = {

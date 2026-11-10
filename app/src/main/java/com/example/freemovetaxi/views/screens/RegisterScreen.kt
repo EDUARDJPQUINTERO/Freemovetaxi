@@ -21,13 +21,20 @@ import androidx.navigation.NavController
 import com.example.freemovetaxi.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.freemovetaxi.viewmodels.RegisterViewModel
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.res.painterResource
 
+import com.example.freemovetaxi.R
 @Composable
 fun RegisterScreen(
     navController: NavController
 ) {
     val registerViewModel: RegisterViewModel = viewModel()
-
+    var isDriver by remember {
+        mutableStateOf(false)
+    }
 
     Column(
         modifier = Modifier
@@ -36,12 +43,48 @@ fun RegisterScreen(
 
         verticalArrangement = Arrangement.Center
     ) {
+        Image(
+            painter = painterResource(
+                id = R.drawable.freemove_logo
+            ),
+            contentDescription = "Logo FreeMove Taxi"
+        )
 
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
         Text(
             text = "Registro"
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+        Row {
+
+            Button(
+                onClick = {
+                    isDriver = false
+                }
+            ) {
+                Text("Pasajero")
+            }
+
+            Spacer(
+                modifier = Modifier.width(12.dp)
+            )
+
+            Button(
+                onClick = {
+                    isDriver = true
+                }
+            ) {
+                Text("Conductor")
+            }
+
+        }
+
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
 
         OutlinedTextField(
             value = registerViewModel.name,
@@ -76,9 +119,33 @@ fun RegisterScreen(
                 Text("Número telefónico")
             }
         )
+        if (isDriver) {
 
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
 
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Número de licencia")
+                }
+            )
+
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Placa del vehículo")
+                }
+            )
+
+        }
         Button(
             onClick = {
 

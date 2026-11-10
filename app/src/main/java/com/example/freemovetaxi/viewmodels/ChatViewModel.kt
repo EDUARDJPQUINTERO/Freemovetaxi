@@ -1,6 +1,8 @@
 package com.example.freemovetaxi.viewmodels
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class ChatViewModel : ViewModel() {
@@ -13,9 +15,6 @@ class ChatViewModel : ViewModel() {
     }
 
     fun sendMessage() {
-
         message = ""
-
     }
-
 }

@@ -15,7 +15,11 @@ import androidx.navigation.NavController
 import com.example.freemovetaxi.navigation.Routes
 
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.res.painterResource
 
+import com.example.freemovetaxi.R
 @Composable
 fun SplashScreen(
     navController: NavController
@@ -40,11 +44,18 @@ fun SplashScreen(
         contentAlignment = Alignment.Center
     ) {
 
-        Text(
-            text = "ConfiTaxi",
-            fontSize = 42.sp,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Image(
+                painter = painterResource(
+                    id = R.drawable.freemove_logo
+                ),
+                contentDescription = "FreeMove Taxi Logo"
+            )
+
+        }
 
     }
 
